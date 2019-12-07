@@ -1,5 +1,7 @@
 package com.app.androidexercise.domain.home;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.app.androidexercise.data.Repository;
 import com.app.androidexercise.domain.BaseViewModel;
 
@@ -13,4 +15,6 @@ public class HomeScreenViewModel extends BaseViewModel {
     public HomeScreenViewModel(Repository repository) {
         mRepository = repository;
     }
+
+
 }
