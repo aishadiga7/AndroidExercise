@@ -1,5 +1,7 @@
 package com.app.androidexercise.data;
 
+import android.text.TextUtils;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
@@ -29,9 +31,9 @@ public class RepositoryImpl implements Repository {
         return Transformations.map(mApiInterface.getFeeds(), input -> {
             List<Feed> feeds = new ArrayList<>();
             if (input.isSuccess()) {
-                if (input.getResource() != null) {
-                    if (input.getResource().rows != null) {
-                        for (Row row : input.getResource().rows) {
+                if (input.getResource() != null && input.getResource().rows != null) {
+                    for (Row row : input.getResource().rows) {
+                        if (!TextUtils.isEmpty(row.title) && TextUtils.isEmpty(row.description)) {
                             Feed feed = new Feed(row.title, row.description, row.imageHref);
                             feeds.add(feed);
                         }
