@@ -33,7 +33,7 @@ public class RepositoryImpl implements Repository {
             if (input.isSuccess()) {
                 if (input.getResource() != null && input.getResource().rows != null) {
                     for (Row row : input.getResource().rows) {
-                        if (!TextUtils.isEmpty(row.title) && TextUtils.isEmpty(row.description)) {
+                        if (!TextUtils.isEmpty(row.title) && !TextUtils.isEmpty(row.description)) {
                             Feed feed = new Feed(row.title, row.description, row.imageHref);
                             feeds.add(feed);
                         }
