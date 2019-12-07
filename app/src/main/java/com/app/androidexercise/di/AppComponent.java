@@ -5,6 +5,7 @@ import com.app.androidexercise.App;
 import com.app.androidexercise.di.modules.ActivityBuilderModule;
 import com.app.androidexercise.di.modules.Bindings;
 import com.app.androidexercise.di.modules.NetworkModule;
+import com.app.androidexercise.di.modules.ViewModelModule;
 
 import javax.inject.Singleton;
 
@@ -15,7 +16,8 @@ import dagger.android.AndroidInjectionModule;
 @Component(modules = {AndroidInjectionModule.class,
         ActivityBuilderModule.class,
         Bindings.class,
-        NetworkModule.class})
+        NetworkModule.class,
+        ViewModelModule.class})
 public interface AppComponent {
     void inject(App app);
 }
