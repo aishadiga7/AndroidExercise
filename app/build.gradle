@@ -37,6 +37,7 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$project.retrofitGsonVersion"
     implementation "com.squareup.retrofit2:converter-jackson:$project.retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$project.okhttpVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$project.gsonConverterVersion"
 
     implementation "com.google.dagger:dagger-android:$project.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"

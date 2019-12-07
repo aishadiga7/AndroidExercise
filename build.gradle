@@ -40,4 +40,5 @@ project.ext {
     retrofitGsonVersion = '2.6.0'
     okhttpVersion = '3.10.0'
     daggerVersion = '2.25.2'
+    gsonConverterVersion ='2.6.2'
 }
