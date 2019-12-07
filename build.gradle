@@ -41,4 +41,6 @@ project.ext {
     okhttpVersion = '3.10.0'
     daggerVersion = '2.25.2'
     gsonConverterVersion ='2.6.2'
+    retrofitLiveDataAdapterVersion = '1.1.2'
+    loggingInterceptorVersion = '4.2.1'
 }
