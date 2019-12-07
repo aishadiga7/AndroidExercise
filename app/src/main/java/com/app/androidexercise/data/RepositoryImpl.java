@@ -1,7 +1,6 @@
 package com.app.androidexercise.data;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.app.androidexercise.data.network.ApiInterface;
@@ -27,7 +26,7 @@ public class RepositoryImpl implements Repository {
 
     @Override
     public LiveData<Result<List<Feed>>> getFeeds() {
-        return Transformations.switchMap(mApiInterface.getFeeds(), input -> {
+        return Transformations.map(mApiInterface.getFeeds(), input -> {
             List<Feed> feeds = new ArrayList<>();
             if (input.isSuccess()) {
                 if (input.getResource() != null) {
@@ -38,9 +37,9 @@ public class RepositoryImpl implements Repository {
                         }
                     }
                 }
-                return new MutableLiveData<>(new Result<>(feeds));
+                return new Result<>(feeds);
             } else {
-                return new MutableLiveData<>(new Result<>(input.getError()));
+                return new Result<>(input.getError());
             }
         });
 

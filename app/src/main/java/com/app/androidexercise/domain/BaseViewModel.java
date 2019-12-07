@@ -16,4 +16,5 @@ public abstract class BaseViewModel extends ViewModel {
     public void setLoading(boolean isLoading) {
         this.isLoading.postValue(isLoading);
     }
+
 }

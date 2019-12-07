@@ -32,8 +32,14 @@ public class MainActivity extends BaseActivity {
         mMainBinding.setLifecycleOwner(this);
 
         mMainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        mMainBinding.recyclerView.setAdapter(new FeedsAdapter());
+        FeedsAdapter feedsAdapter = new FeedsAdapter();
+        mMainBinding.recyclerView.setAdapter(feedsAdapter);
 
+        mHomeScreenViewModel.setLoading(true);
+        mHomeScreenViewModel.getFeedsListItems().observe(this, items -> {
+            feedsAdapter.setListItems(items);
+            mHomeScreenViewModel.setLoading(false);
+        });
 
 
     }
