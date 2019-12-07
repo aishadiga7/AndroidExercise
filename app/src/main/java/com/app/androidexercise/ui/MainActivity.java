@@ -1,8 +1,10 @@
-package com.app.androidexercise;
+package com.app.androidexercise.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.app.androidexercise.R;
 
 public class MainActivity extends AppCompatActivity {
 
