@@ -43,4 +43,5 @@ project.ext {
     gsonConverterVersion ='2.6.2'
     retrofitLiveDataAdapterVersion = '1.1.2'
     loggingInterceptorVersion = '4.2.1'
+    glideVersion = '4.10.0'
 }
