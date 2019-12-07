@@ -2,6 +2,8 @@ package com.app.androidexercise.di.modules;
 
 import com.app.androidexercise.data.network.ApiInterface;
 import com.github.leonardoxh.livedatacalladapter.LiveDataCallAdapterFactory;
+import com.github.leonardoxh.livedatacalladapter.LiveDataResponseBodyConverterFactory;
+import com.google.gson.Gson;
 
 import javax.inject.Singleton;
 
@@ -20,6 +22,7 @@ public class NetworkModule {
     @Singleton
     public static Retrofit provideRetrofit(OkHttpClient okHttpClient){
         return new Retrofit.Builder()
+                .addConverterFactory(LiveDataResponseBodyConverterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(LiveDataCallAdapterFactory.create())
                 .client(okHttpClient)
