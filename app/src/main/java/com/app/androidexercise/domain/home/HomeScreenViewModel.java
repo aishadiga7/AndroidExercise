@@ -26,14 +26,22 @@ public class HomeScreenViewModel extends BaseViewModel {
     }
 
 
-    public LiveData<List<ListItem>> getFeedsListItems() {
-        if (mListLiveData == null) {
-            loadFeeds();
-        }
+    /**
+     * This method will get the list of {@link ListItem} from repository. If the data was previously fetched, it will return
+     * the cached data
+     * @return
+     */
+    public LiveData<List<ListItem>> getListLiveData() {
+        if (mListLiveData == null)
+            fetchFeeds();
         return mListLiveData;
     }
 
-    private void loadFeeds() {
+    /**
+     * This method will get the list of {@link ListItem} from repository. This method will always fetch the latest data from the network
+     * @return
+     */
+    public LiveData<List<ListItem>> fetchFeeds() {
         mListLiveData = map(mRepository.getFeeds(), input -> {
             List<ListItem> listItems = new ArrayList<>();
             if (!input.isError()) {
@@ -45,5 +53,6 @@ public class HomeScreenViewModel extends BaseViewModel {
             }
             return listItems;
         });
+        return mListLiveData;
     }
 }

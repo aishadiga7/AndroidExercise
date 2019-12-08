@@ -3,6 +3,7 @@ package com.app.androidexercise.ui;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -10,6 +11,11 @@ import com.app.androidexercise.R;
 import com.app.androidexercise.databinding.ActivityMainBinding;
 import com.app.androidexercise.di.factory.AppViewModelFactory;
 import com.app.androidexercise.domain.home.HomeScreenViewModel;
+import com.app.androidexercise.ui.model.ListItem;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -36,12 +42,19 @@ public class MainActivity extends BaseActivity {
         mMainBinding.recyclerView.setAdapter(feedsAdapter);
 
         mHomeScreenViewModel.setLoading(true);
-        mHomeScreenViewModel.getFeedsListItems().observe(this, items -> {
-            feedsAdapter.setListItems(items);
+        mHomeScreenViewModel.getListLiveData().observe(this, getObserver(feedsAdapter));
+
+        mMainBinding.swipeRefresh.setOnRefreshListener(() -> mHomeScreenViewModel.fetchFeeds().observe(this, getObserver(feedsAdapter)));
+
+
+    }
+
+    @NotNull
+    private Observer<List<ListItem>> getObserver(FeedsAdapter feedsAdapter) {
+        return listItems -> {
+            feedsAdapter.setListItems(listItems);
             mHomeScreenViewModel.setLoading(false);
-        });
-
-
+        };
     }
 
 
