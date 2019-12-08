@@ -1,6 +1,7 @@
 package com.app.androidexercise.domain.home;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
 import com.app.androidexercise.data.Repository;
 import com.app.androidexercise.domain.BaseViewModel;
@@ -18,6 +19,7 @@ public class HomeScreenViewModel extends BaseViewModel {
 
     private Repository mRepository;
     private LiveData<List<ListItem>> mListLiveData;
+    private MutableLiveData<Throwable> mError = new MutableLiveData<>();
 
 
     @Inject
@@ -50,9 +52,17 @@ public class HomeScreenViewModel extends BaseViewModel {
                         listItems.add(new ListItem(feed.getTitle(), feed.getDescription(), feed.getImageUrl()));
                     }
                 }
+            }else {
+               mError.setValue(input.getError());
+               mError.setValue(null);
             }
             return listItems;
         });
         return mListLiveData;
+    }
+
+
+    public MutableLiveData<Throwable> getError() {
+        return mError;
     }
 }

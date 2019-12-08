@@ -36,18 +36,17 @@ public class MainActivity extends BaseActivity {
         mHomeScreenViewModel = ViewModelProviders.of(this, mAppViewModelFactory).get(HomeScreenViewModel.class);
         mMainBinding.setViewModel(mHomeScreenViewModel);
         mMainBinding.setLifecycleOwner(this);
-
         mMainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         FeedsAdapter feedsAdapter = new FeedsAdapter();
         mMainBinding.recyclerView.setAdapter(feedsAdapter);
-
         mHomeScreenViewModel.setLoading(true);
         mHomeScreenViewModel.getListLiveData().observe(this, getObserver(feedsAdapter));
-
         mMainBinding.swipeRefresh.setOnRefreshListener(() -> mHomeScreenViewModel.fetchFeeds().observe(this, getObserver(feedsAdapter)));
-
+        mHomeScreenViewModel.getError().observe(this, this::showMessage);
 
     }
+
+
 
     @NotNull
     private Observer<List<ListItem>> getObserver(FeedsAdapter feedsAdapter) {
