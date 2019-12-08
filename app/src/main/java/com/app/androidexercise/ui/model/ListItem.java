@@ -1,5 +1,8 @@
 package com.app.androidexercise.ui.model;
 
+/**
+ * UI model to represent a Feed list item to be used in the {@link com.app.androidexercise.ui.FeedsAdapter}
+ */
 public class ListItem {
     public String header;
     public String subHeader;
