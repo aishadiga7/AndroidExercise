@@ -14,4 +14,6 @@ import java.util.List;
 public interface Repository {
 
     LiveData<Result<List<Feed>>> getFeeds();
+
+    LiveData<String> feedTitle();
 }

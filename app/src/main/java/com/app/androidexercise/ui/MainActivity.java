@@ -45,6 +45,8 @@ public class MainActivity extends BaseActivity {
         mHomeScreenViewModel.getListLiveData().observe(this, getObserver(feedsAdapter));
         mMainBinding.swipeRefresh.setOnRefreshListener(() -> mHomeScreenViewModel.fetchFeeds().observe(this, getObserver(feedsAdapter)));
         mHomeScreenViewModel.getError().observe(this, this::showMessage);
+        mHomeScreenViewModel.getScreenTitle().observe(this, this::setUpToolbarText);
+
 
     }
 

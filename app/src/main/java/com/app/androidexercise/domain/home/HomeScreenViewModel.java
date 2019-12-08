@@ -20,6 +20,7 @@ public class HomeScreenViewModel extends BaseViewModel {
     private Repository mRepository;
     private LiveData<List<ListItem>> mListLiveData;
     private MutableLiveData<Throwable> mError = new MutableLiveData<>();
+    private MutableLiveData<String> mTitle = new MutableLiveData<>();
 
 
     @Inject
@@ -45,6 +46,7 @@ public class HomeScreenViewModel extends BaseViewModel {
      */
     public LiveData<List<ListItem>> fetchFeeds() {
         mListLiveData = map(mRepository.getFeeds(), input -> {
+            mTitle.postValue(mRepository.feedTitle().getValue()); // update the screen title observable on each fetch
             List<ListItem> listItems = new ArrayList<>();
             if (!input.isError()) {
                 if (input.getData() != null) {
@@ -61,6 +63,14 @@ public class HomeScreenViewModel extends BaseViewModel {
         return mListLiveData;
     }
 
+
+    /**
+     * This method returns the title of the screen
+     * @return
+     */
+    public LiveData<String> getScreenTitle() {
+        return mTitle;
+    }
 
     public MutableLiveData<Throwable> getError() {
         return mError;

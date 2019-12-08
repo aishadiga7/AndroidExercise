@@ -15,19 +15,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setUpToolbarText();
     }
 
-    protected void setUpToolbarText() {
-        mToolbarText.observe(this, title -> {
-            if (getSupportActionBar() != null) {
-                getSupportActionBar().setTitle(title);
-            }
-        });
-    }
-
-    protected MutableLiveData<String> toolbarText() {
-        return mToolbarText;
+    protected void setUpToolbarText(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 
     protected void showMessage(Throwable throwable) {
