@@ -5,6 +5,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.app.androidexercise.R;
@@ -37,6 +38,7 @@ public class MainActivity extends BaseActivity {
         mMainBinding.setViewModel(mHomeScreenViewModel);
         mMainBinding.setLifecycleOwner(this);
         mMainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        mMainBinding.recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(),DividerItemDecoration.VERTICAL));
         FeedsAdapter feedsAdapter = new FeedsAdapter();
         mMainBinding.recyclerView.setAdapter(feedsAdapter);
         mHomeScreenViewModel.setLoading(true);
