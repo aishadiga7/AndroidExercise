@@ -52,7 +52,7 @@ public class RepositoryImpl implements Repository {
                         }
                     }
                 }
-                return new Result<>(feeds);
+                return new Result<>(new AppError(ErrorCode.NO_DATA_FOUND));
             } else {
                 return new Result<>(input.getError());
             }
