@@ -28,6 +28,9 @@ public class HomeScreenViewModel extends BaseViewModel {
         mRepository = repository;
     }
 
+    public void init(){
+        mError.setValue(null);
+    }
 
     /**
      * This method will get the list of {@link ListItem} from repository. If the data was previously fetched, it will return
