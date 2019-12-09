@@ -35,6 +35,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         mHomeScreenViewModel = ViewModelProviders.of(this, mAppViewModelFactory).get(HomeScreenViewModel.class);
+        mHomeScreenViewModel.init();
         mMainBinding.setViewModel(mHomeScreenViewModel);
         mMainBinding.setLifecycleOwner(this);
         mMainBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
