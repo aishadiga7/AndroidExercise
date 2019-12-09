@@ -8,6 +8,8 @@ import androidx.lifecycle.Transformations;
 
 import com.app.androidexercise.data.network.ApiInterface;
 import com.app.androidexercise.data.network.model.Row;
+import com.app.androidexercise.domain.error.AppError;
+import com.app.androidexercise.domain.error.ErrorCode;
 import com.app.androidexercise.domain.model.Feed;
 import com.app.androidexercise.domain.model.Result;
 
@@ -35,6 +37,9 @@ public class RepositoryImpl implements Repository {
     public LiveData<Result<List<Feed>>> getFeeds() {
         return Transformations.map(mApiInterface.getFeeds(), input -> {
             List<Feed> feeds = new ArrayList<>();
+            if(input == null){
+                return new Result<>(new AppError(ErrorCode.NULL_RESPOSNSE_FROM_SERVER));
+            }
             if (input.isSuccess()) {
                 if (input.getResource() != null && input.getResource().rows != null) {
                     if (!TextUtils.isEmpty(input.getResource().title)) {
