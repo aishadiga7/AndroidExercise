@@ -56,7 +56,6 @@ public class HomeScreenViewModel extends BaseViewModel {
                 }
             }else {
                mError.setValue(input.getError());
-               mError.setValue(null);
             }
             return listItems;
         });
