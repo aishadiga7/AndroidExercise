@@ -45,5 +45,15 @@ public class HomeScreenViewModelTest {
     }
 
 
+    @Test
+    public void  shouldReturnProperUIListItemsOnSuccessfulAPIResponse(){
+        Mockito.when(mApiInterface.getFeeds()).thenReturn(new MutableLiveData<>(Stub.getMockApiResponse()));
+        mHomeScreenViewModel.fetchFeeds().observeForever(listItems -> { });
+        assertEquals(mHomeScreenViewModel.getListLiveData().getValue(), Stub.mockListItems() );
+
+    }
+
+
+
 
 }

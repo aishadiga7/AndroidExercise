@@ -1,5 +1,7 @@
 package com.app.androidexercise.ui.model;
 
+import java.util.Objects;
+
 /**
  * UI model to represent a Feed list item to be used in the {@link com.app.androidexercise.ui.FeedsAdapter}
  */
@@ -39,5 +41,20 @@ public class ListItem {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ListItem listItem = (ListItem) o;
+        return Objects.equals(header, listItem.header) &&
+                Objects.equals(subHeader, listItem.subHeader) &&
+                Objects.equals(imageUrl, listItem.imageUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(header, subHeader, imageUrl);
     }
 }
