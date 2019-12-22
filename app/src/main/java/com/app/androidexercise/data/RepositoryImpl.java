@@ -51,6 +51,7 @@ public class RepositoryImpl implements Repository {
                             feeds.add(feed);
                         }
                     }
+                    return new Result<>(feeds);
                 }
                 return new Result<>(new AppError(ErrorCode.NO_DATA_FOUND));
             } else {
