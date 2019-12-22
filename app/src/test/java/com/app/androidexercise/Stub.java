@@ -25,4 +25,8 @@ public class Stub {
         return resource;
 
     }
+
+    public static String listTitle() {
+        return "About Canada";
+    }
 }

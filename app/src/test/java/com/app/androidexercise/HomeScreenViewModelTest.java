@@ -50,6 +50,13 @@ public class HomeScreenViewModelTest {
         Mockito.when(mApiInterface.getFeeds()).thenReturn(new MutableLiveData<>(Stub.getMockApiResponse()));
         mHomeScreenViewModel.fetchFeeds().observeForever(listItems -> { });
         assertEquals(mHomeScreenViewModel.getListLiveData().getValue(), Stub.mockListItems() );
+    }
+
+    @Test
+    public void shouldSetTitleOnSuccessfulAPIResponse(){
+        Mockito.when(mApiInterface.getFeeds()).thenReturn(new MutableLiveData<>(Stub.getMockApiResponse()));
+        mHomeScreenViewModel.fetchFeeds().observeForever(listItems -> { });
+        assertEquals(mHomeScreenViewModel.getScreenTitle().getValue(), Stub.listTitle());
 
     }
 
